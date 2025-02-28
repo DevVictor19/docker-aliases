@@ -42,9 +42,11 @@ alias dcb="docker compose build"       # Construir imagens do compose
 alias dcr="docker compose restart"     # Reiniciar serviços do compose
 alias dcl="docker compose logs -f"     # Ver logs de um serviço
 
-# ⚡ Função para `docker compose up -d` com arquivo específico
+# ⚡ Função para `docker compose up -d`
 dcu() {
-  local file="${1:-docker-compose.yml}"
-  shift
-  docker compose -f "$file" up -d "$@"
+  if [[ $# -eq 0 ]]; then
+    docker compose up -d
+  else
+    docker compose -f "$1" up -d
+  fi
 }
