@@ -1,36 +1,21 @@
 # 🔄 Gerenciamento de containers
-alias dps="docker ps"                 # Listar containers em execução
+alias dps="docker ps"                  # Listar containers em execução
 alias dpsa="docker ps -a"              # Listar todos os containers
 alias dimg="docker images"             # Listar imagens
 alias drm="docker rm -f"               # Remover container
 alias drmi="docker rmi -f"             # Remover imagem
 alias dstop="docker stop"              # Parar container
 alias dstart="docker start"            # Iniciar container
-
-# 📂 Função para copiar arquivos entre host e container
-dcp() {
-  if [[ $# -ne 3 ]]; then
-    echo "Uso: dcp <container> <origem> <destino>"
-    echo "Exemplo (copiar do container para o host): dcp meu-container /arquivo.txt ."
-    echo "Exemplo (copiar do host para o container): dcp meu-container arquivo.txt /destino/"
-    return 1
-  fi
-
-  local container="$1"
-  local origem="$2"
-  local destino="$3"
-
-  docker cp "$container:$origem" "$destino" 2>/dev/null || docker cp "$origem" "$container:$destino"
-}
+alias dcopy="docker cp"                # Copiar arquivos
 
 # 🚀 Criando e rodando containers rapidamente
-alias drun="docker run --rm -it"       # Executar container temporário interativo
-alias drund="docker run -d --rm"       # Executar container temporário em background
+alias dr="docker run --rm -it"       # Executar container temporário interativo
+alias drd="docker run -d --rm"       # Executar container temporário em background
 
 # 🔍 Inspeção e logs
-alias dlogs="docker logs -f"           # Ver logs do container
-alias dexec="docker exec -it"          # Entrar no container
-alias dinspect="docker inspect"        # Inspecionar container/imagem
+alias dl="docker logs -f"            # Ver logs do container
+alias dx="docker exec -it"           # Entrar no container
+alias di="docker inspect"            # Inspecionar container/imagem
 
 # 🗑️ Limpeza
 alias dsprune="docker system prune -af" # Remover imagens, containers e volumes não usados
@@ -41,12 +26,6 @@ alias dcd="docker compose down"        # Derrubar serviços
 alias dcb="docker compose build"       # Construir imagens do compose
 alias dcr="docker compose restart"     # Reiniciar serviços do compose
 alias dcl="docker compose logs -f"     # Ver logs de um serviço
-
-# ⚡ Função para `docker compose up -d`
-dcu() {
-  if [[ $# -eq 0 ]]; then
-    docker compose up -d
-  else
-    docker compose -f "$1" up -d
-  fi
-}
+alias dcx="docker compose exec"        # Executar comando no serviço
+alias dcu='docker compose up -d'       # Subir compose
+alias dcp='docker compose port'        # Exibir portas do serviço
