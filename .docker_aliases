@@ -7,6 +7,8 @@ alias drmi="docker rmi -f"             # Remover imagem
 alias dstop="docker stop"              # Parar container
 alias dstart="docker start"            # Iniciar container
 alias dcopy="docker cp"                # Copiar arquivos
+alias dvls="docker volume ls"          # Listar volumes
+alias dnls="docker network ls"         # Listar networks
 
 # 🚀 Criando e rodando containers rapidamente
 alias dr="docker run --rm -it"       # Executar container temporário interativo
