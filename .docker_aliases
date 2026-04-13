@@ -1,5 +1,5 @@
 # 🔄 Gerenciamento de containers
-alias dps="docker ps"                  # Listar containers em execução
+alias dps="docker ps --format 'table {{.ID}}\t{{.Names}}\t{{.RunningFor}}\t{{.Status}}\t{{.Ports}}'"               
 alias dpsa="docker ps -a"              # Listar todos os containers
 alias dimg="docker images"             # Listar imagens
 alias drm="docker rm -f"               # Remover container
